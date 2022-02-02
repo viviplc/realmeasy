@@ -1,9 +1,9 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <ProductRatings/>
     <HelloWorld/>
-
+    <ProductRatings :productId="1" />
+    <UserProductReviews/>
   </div>
   
 </template>
@@ -13,11 +13,13 @@
 
 import ProductRatings from '../components/ProductRatings.vue'
 import HelloWorld from '../components/HelloWorld.vue'
+import UserProductReviews from '../components/UserProductReviews.vue'
 export default {
   name: 'Home',
   components: {
     ProductRatings,
-    HelloWorld
+    HelloWorld,
+    UserProductReviews
   }
 }
 </script>

@@ -10,12 +10,12 @@
     </div>
     <div class="row" v-for="review of reviews" :key="review.userId">
       <div class="col">
-        <div class="d-flex justify-content-between">
-          <div style="padding-right: 50px;">
+        <div class="row">
+          <div class="col-md-2 col-lg-1" style="padding-right: 50px;">
             <img class="rounded-circle z-depth-2 " style="width:100px; border: 1px solid #23B1BB;" v-bind:src="review.profileUrl"
             />
           </div>
-          <div>
+          <div class="col-md-10 col-lg-11">
             <div class="row">
               <div class="col">
                 <div class="d-flex justify-content-between">
@@ -42,28 +42,23 @@
 
 <script>
   export default {
+  props: {
+    'productId' : Number
+  },
     data() {
       return {
-        productRating: 3.24,
-        reviews : [
-        {
-          userId: 123,
-          name: "Bill Gates",
-          profileUrl: "https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg",
-          text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-          rating: 1.23,
-        },
-        {
-          userId: 193,
-          name: "Romeno Wenogk",
-          profileUrl: "https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg",
-          text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-          rating: 4.67
-        }
-        ]
       }
     },
     computed: {
+      reviews() {
+      let productsArray =  this.$store.state.products;
+      for(let product of productsArray){
+        if (product.id == this.productId){
+          return product.reviews;
+        }
+      }
+      return []
+    },
       averageProductRating: function () {
         let totalRating = 0;
         let numReviews = this.reviews.length;
