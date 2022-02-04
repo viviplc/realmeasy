@@ -7,16 +7,18 @@
       :productprice="product.productPrice"
     >
     </Item>
+     <ProductRatings :productId="product.itemId" />
   </div>
 </template>
 
 <script>
 import Item from "@/components/Item.vue";
-
+import ProductRatings from '../components/ProductRatings.vue'
 export default {
   name: "ItemList",
   components: {
     Item,
+    ProductRatings
   },
   computed: {
     product() {
