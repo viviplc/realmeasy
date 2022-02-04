@@ -2,6 +2,7 @@
   <div class="items-container" id="itemView">
     <div class="item-component" v-for="item in items" v-bind:key="item.itemId">
       <Item
+        :itemId="item.itemId" 
         :image="item.image"
         :productname="item.productName"
         :productdescription="item.productDescription"
