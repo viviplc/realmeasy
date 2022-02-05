@@ -103,6 +103,7 @@ export default {
 <style scoped>
 .view-container {
   display: flex;
+  margin-top: 100px;
 }
 
 .promos-container {

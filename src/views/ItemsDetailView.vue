@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="itemdetail-container">
     <Item
       :itemId="product.itemId"
       :image="product.image"
@@ -34,3 +34,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.itemdetail-container{
+  margin-top: 100px;
+}
+</style>
