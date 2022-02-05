@@ -9,7 +9,7 @@
       <h2>{{ productname }}</h2>
       <p>{{ productdescription }}</p>
       <h3>{{ productprice }}</h3>
-      <button>Add to cart</button>
+      <button v-on:click="addToCart(itemId, 1)">Add to cart</button>
     </div>
   </div>
 </template>
@@ -45,6 +45,10 @@ export default {
     getProductUrl() {
       return "/#/item/" + this.itemId;
     },
+    addToCart(productId, quantity){
+      let selected = true;
+      this.$store.commit("ADD_TO_CART", {productId, quantity, selected});
+    }
   },
 };
 </script>

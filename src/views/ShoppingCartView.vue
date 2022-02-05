@@ -1,13 +1,15 @@
 <template>
   <div class="view-container">
     <div class="items-list-cart">
-      <div v-for="item in itemscart" v-bind:key="item.itemId">
+      <div v-for="item in cartItems" v-bind:key="item.itemId">
         <ItemCart
+          :itemId="item.itemId"
           :image="item.image"
           :productname="item.productName"
           :productdescription="item.productDescription"
           :productprice="item.productPrice"
           :productquantity="item.productQuantity"
+          :selected="item.selected"
         >
         </ItemCart>
       </div>
@@ -20,6 +22,7 @@
         v-bind:key="item.itemId"
       >
         <Item
+          :itemId="item.itemId"
           :image="item.image"
           :productname="item.productName"
           :productdescription="item.productDescription"
@@ -42,6 +45,27 @@ export default {
     ItemCart,
     CheckoutResume,
     Item,
+  },
+  computed: {
+    cartItems() {
+      let productIds = []
+      let productQuantities = []
+      let productSelectedBools = []
+      this.$store.state.cart.forEach(item => {
+        productIds.push(item.productId);
+        productQuantities.push(item.quantity);
+        productSelectedBools.push(item.selected)
+      });
+      let finalResult = []
+      let productsArray = this.$store.state.products;
+      for(let product of productsArray){
+        const needle = productIds.indexOf(product.itemId);
+        if(needle >= 0){
+          finalResult.push({productQuantity : productQuantities[needle], selected: productSelectedBools[needle], ...product})
+        }
+      }
+      return finalResult;
+    },
   },
   data() {
     return {

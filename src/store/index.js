@@ -283,15 +283,24 @@ export default new Vuex.Store({
     SET_PRODUCTS(state, products) {
       state.products = products;
     },
-    ADD_TO_CART(state, {productId, quantity}) {
-      state.cart.push(
-        {productId, quantity}
-      ) 
+    ADD_TO_CART(state, {productId, quantity, selected}) {
+      let inCart = false;
+      for (let cartItem of state.cart) {
+        if(cartItem.productId == productId){
+          inCart = true;
+        }
+      }
+      if(!inCart){
+        state.cart.push(
+          {productId, quantity, selected}
+        ) 
+      }
     },
-    UPDATE_PRODUCT_CART(state, {productId, quantity}) {
+    UPDATE_PRODUCT_CART(state, {productId, quantity, selected}) {
       for (let cartItem of state.cart) {
       if(cartItem.productId == productId){
         cartItem.quantity = quantity;
+        cartItem.selected = selected;
       }
       }
     },

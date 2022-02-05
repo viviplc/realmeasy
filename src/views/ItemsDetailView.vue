@@ -1,6 +1,7 @@
 <template>
   <div>
     <Item
+      :itemId="item.itemId"
       :image="product.image"
       :productname="product.productName"
       :productdescription="product.productDescription"

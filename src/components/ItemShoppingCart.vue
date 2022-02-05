@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <label class="checkbox-container">
-      <input type="checkbox" checked="checked" id="itemId" />
+      <input type="checkbox" checked="checked" id="itemId" v-model="selected"   />
       <span class="check-mark"></span>
     </label>
     <div class="item-image">
@@ -17,13 +17,19 @@
       <div class="details-container">
         <h2>Quantity</h2>
         <div class="quatity-container">
-          <button class="btn-rounded"><i class="fa fa-minus"></i></button>
+          <button class="btn-rounded" v-on:click="decreaseQuantity()">
+            <i class="fa fa-minus"></i>
+          </button>
           <h3>{{ productquantity }}</h3>
-          <button class="btn-rounded"><i class="fa fa-plus"></i></button>
+          <button class="btn-rounded" v-on:click="increaseQuantity()">
+            <i class="fa fa-plus"></i>
+          </button>
         </div>
       </div>
     </div>
-    <button class="btn-white"><i class="fa fa-trash"></i></button>
+    <button class="btn-white" v-on:click="deleteCartItem(itemId)">
+      <i class="fa fa-trash"></i>
+    </button>
   </div>
 </template>
 
@@ -54,10 +60,40 @@ export default {
       type: Number,
       required: true,
     },
+    selected: {
+      type: Boolean,
+      required: true,
+    },
   },
   methods: {
     getImgUrl(pic) {
       return require("../assets/" + pic);
+    },
+    decreaseQuantity() {
+      if (this.productquantity > 1) {
+        let quantity = this.productquantity - 1;
+        let selected = this.selected;
+        let productId = this.itemId;
+        this.$store.commit("UPDATE_PRODUCT_CART", {
+          productId,
+          quantity,
+          selected,
+        });
+        //this.productquantity -= 1;
+      }
+    },
+    increaseQuantity() {
+      let quantity = this.productquantity + 1;
+      let selected = this.selected;
+      let productId = this.itemId;
+        this.$store.commit("UPDATE_PRODUCT_CART", {
+          productId,
+          quantity,
+          selected,
+        });
+    },
+    deleteCartItem(productId) {
+      this.$store.commit("DELETE_PRODUCT_CART", productId);
     },
   },
 };
@@ -147,9 +183,9 @@ export default {
   margin-left: 24px;
 }
 
-.item-info{
-    margin: 5px;
-    margin-left: 42px;
+.item-info {
+  margin: 5px;
+  margin-left: 42px;
 }
 
 .details-container {
@@ -184,27 +220,27 @@ export default {
   align-self: flex-start;
 }
 
-.item-info h1{
-    font-size: 40px;
-    color: black;
+.item-info h1 {
+  font-size: 40px;
+  color: black;
 }
 
-.item-info p{
-    font-size: 22px;
-    width: 660px;
-    color: #868485;
+.item-info p {
+  font-size: 22px;
+  width: 660px;
+  color: #868485;
 }
 
-.item-info h2{
-    font-size: 27px;
-    color: black;
-    margin-right: 45px;
+.item-info h2 {
+  font-size: 27px;
+  color: black;
+  margin-right: 45px;
 }
 
-.item-info h3{
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
-    margin-left: 10px;
+.item-info h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  margin-left: 10px;
 }
 </style>

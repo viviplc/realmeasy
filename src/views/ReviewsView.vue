@@ -8,6 +8,7 @@
         v-bind:key="item.itemId"
       >
         <Item
+          :itemId="item.itemId"
           :image="item.image"
           :productname="item.productName"
           :productdescription="item.productDescription"
