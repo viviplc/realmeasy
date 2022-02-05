@@ -102,4 +102,8 @@ export default {
 .reviews-component {
   padding: 25px;
 }
+
+.col-md-10{
+  padding-left: 50px;
+}
 </style>
