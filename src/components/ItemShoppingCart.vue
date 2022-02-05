@@ -12,7 +12,7 @@
       <p>{{ productdescription }}</p>
       <div class="details-container">
         <h2>Unit Price</h2>
-        <h3>{{ productprice }}</h3>
+        <h3>$ {{ productprice }}</h3>
       </div>
       <div class="details-container">
         <h2>Quantity</h2>
