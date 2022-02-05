@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <label class="checkbox-container">
-      <input type="checkbox" checked="checked" id="itemId" v-model="selected"   />
+      <input type="checkbox" id="itemId" :checked="selected" v-on:click="toggleSelect()"/>
       <span class="check-mark"></span>
     </label>
     <div class="item-image">
@@ -68,6 +68,16 @@ export default {
   methods: {
     getImgUrl(pic) {
       return require("../assets/" + pic);
+    },
+    toggleSelect(){
+      let quantity = this.productquantity;
+      let selected = !this.selected;
+      let productId = this.itemId;
+        this.$store.commit("UPDATE_PRODUCT_CART", {
+          productId,
+          quantity,
+          selected,
+        });
     },
     decreaseQuantity() {
       if (this.productquantity > 1) {
