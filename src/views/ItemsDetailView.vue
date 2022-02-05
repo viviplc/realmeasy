@@ -1,7 +1,7 @@
 <template>
   <div>
     <Item
-      :itemId="item.itemId"
+      :itemId="product.itemId"
       :image="product.image"
       :productname="product.productName"
       :productdescription="product.productDescription"
