@@ -10,6 +10,7 @@ const vuexLocal = new VuexPersistence({
 
 export default new Vuex.Store({
   state: {
+    cart: [],
     products: [
       {
         itemId: 1,
@@ -281,6 +282,21 @@ export default new Vuex.Store({
   mutations: {
     SET_PRODUCTS(state, products) {
       state.products = products;
+    },
+    ADD_TO_CART(state, {productId, quantity}) {
+      state.cart.push(
+        {productId, quantity}
+      ) 
+    },
+    UPDATE_PRODUCT_CART(state, {productId, quantity}) {
+      for (let cartItem of state.cart) {
+      if(cartItem.productId == productId){
+        cartItem.quantity = quantity;
+      }
+      }
+    },
+    DELETE_PRODUCT_CART(state, productId) {
+      state.cart = state.cart.filter(item => item.productId !== productId)
     },
     CREATE_NEW_REVIEW(state, { productId, reviewText, reviewRating }) {
       for (let product of state.products) {
