@@ -18,7 +18,7 @@ export default new Vuex.Store({
         productName: "Product Name",
         productDescription:
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: "$29,19",
+        productPrice: 29.19,
         reviews: [
           {
             userId: 123,
@@ -44,7 +44,7 @@ export default new Vuex.Store({
         productName: "Product Name 2",
         productDescription:
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: "$29,19",
+        productPrice: 29.19,
         reviews: [
           {
             userId: 123,
@@ -70,7 +70,7 @@ export default new Vuex.Store({
         productName: "Product Name 3",
         productDescription:
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: "$29,19",
+        productPrice: 29.19,
         reviews: [
           {
             userId: 123,
@@ -96,7 +96,7 @@ export default new Vuex.Store({
         productName: "Product Name",
         productDescription:
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: "$29,19",
+        productPrice: 29.19,
         reviews: [
           {
             userId: 123,
@@ -122,7 +122,7 @@ export default new Vuex.Store({
         productName: "Product Name",
         productDescription:
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: "$29,19",
+        productPrice: 29.19,
         reviews: [
           {
             userId: 123,
@@ -148,7 +148,7 @@ export default new Vuex.Store({
         productName: "Product Name",
         productDescription:
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: "$29,19",
+        productPrice: 29.19,
         reviews: [
           {
             userId: 123,
@@ -174,7 +174,7 @@ export default new Vuex.Store({
         productName: "Product Name",
         productDescription:
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: "$29,19",
+        productPrice: 29.19,
         reviews: [
           {
             userId: 123,
@@ -200,7 +200,7 @@ export default new Vuex.Store({
         productName: "Product Name",
         productDescription:
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: "$29,19",
+        productPrice: 29.19,
         reviews: [
           {
             userId: 123,
@@ -226,7 +226,7 @@ export default new Vuex.Store({
         productName: "Product Name",
         productDescription:
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: "$29,19",
+        productPrice: 29.19,
         reviews: [
           {
             userId: 123,
@@ -252,7 +252,7 @@ export default new Vuex.Store({
         productName: "Product Name",
         productDescription:
           "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: "$29,19",
+        productPrice: 29.19,
         reviews: [
           {
             userId: 123,

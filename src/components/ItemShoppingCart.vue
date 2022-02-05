@@ -53,7 +53,7 @@ export default {
       required: true,
     },
     productprice: {
-      type: String,
+      type: Number,
       required: true,
     },
     productquantity: {

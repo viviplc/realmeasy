@@ -66,49 +66,24 @@ export default {
       }
       return finalResult;
     },
+    itemsprice() {
+      let totalCost = 0.0;
+      this.cartItems.forEach((item)=> {
+        if(item.selected){
+          totalCost += item.productPrice * item.productQuantity;
+        }
+      });
+      return parseFloat(totalCost.toFixed(2));
+    },
+    items() {
+      let productsArray = this.$store.state.products;
+      return productsArray.slice(0, 2);
+    }
+
   },
   data() {
     return {
-      itemsprice: 32.54,
       shippingprice: 5.23,
-      itemscart: [
-        {
-          itemId: 1,
-          image: "Picture7.jpg",
-          productName: "Product Name",
-          productDescription:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-          productPrice: "$29,19",
-          productQuantity: 2,
-        },
-        {
-          itemId: 2,
-          image: "Picture8.jpg",
-          productName: "Product Name",
-          productDescription:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-          productPrice: "$29,19",
-          productQuantity: 4,
-        },
-      ],
-      items: [
-        {
-          itemId: 1,
-          image: "Picture1.jpg",
-          productName: "Product Name",
-          productDescription:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-          productPrice: "$29,19",
-        },
-        {
-          itemId: 2,
-          image: "Picture2.jpg",
-          productName: "Product Name",
-          productDescription:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-          productPrice: "$29,19",
-        },
-      ],
     };
   },
 };
