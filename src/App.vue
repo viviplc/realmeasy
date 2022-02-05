@@ -3,9 +3,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/itemsList">Items List</router-link> |
+      <router-link to="/">Items List</router-link> |
       <router-link to="/shoppingCart">Cart</router-link> |
       <router-link to="/reviews">Reviews</router-link>
     </div>
