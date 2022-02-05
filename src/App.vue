@@ -6,7 +6,8 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/itemsList">Items List</router-link> |
-      <router-link to="/shoppingCart">Cart</router-link>
+      <router-link to="/shoppingCart">Cart</router-link> |
+      <router-link to="/reviews">Reviews</router-link>
     </div>
     <router-view/> 
   </div>

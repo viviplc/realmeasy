@@ -4,7 +4,6 @@
     
     <HelloWorld/>
     <ProductRatings :productId="1" />
-    <UserProductReviews/>
   </div>
   
 </template>
@@ -14,15 +13,11 @@
 
 
 import ProductRatings from '../components/ProductRatings.vue'
-
-import UserProductReviews from '../components/UserProductReviews.vue'
 export default {
   name: 'Home',
   components: {
    
     ProductRatings,
- 
-    UserProductReviews
   }
 }
 </script>
