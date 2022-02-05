@@ -77,7 +77,18 @@ export default {
     },
     items() {
       let productsArray = this.$store.state.products;
-      return productsArray.slice(0, 2);
+      let productIds = []
+      this.$store.state.cart.forEach(item => {
+        productIds.push(item.productId);
+      });
+      let finalResult = [];
+      for(let product of productsArray){
+        const needle = productIds.indexOf(product.itemId);
+        if(needle == -1){
+          finalResult.push(product)
+        }
+      }
+      return finalResult.slice(0, 3);
     }
 
   },
