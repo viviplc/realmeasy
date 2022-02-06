@@ -16,7 +16,15 @@
         <nav>
           <div class="nav-links">
             <button v-if="isLoggedIn" class="login-button" @click="logoutUser">
-              {{loggedInProfile.name}}<i class="fa fa-fw fa-user"></i>
+              {{loggedInProfile.name}}
+              <div>
+                <img
+                class="rounded-circle z-depth-2"
+                style="width: 58px; border: 3px solid #23b1bb"
+                v-bind:src="loggedInProfile.profileImage"
+              />
+              <i class="fa fa-fw fa-chevron-down" id="chevron-down"></i>
+              </div>
             </button>
             <button v-else class="login-button" @click="showModal">
               Login Account<i class="fa fa-fw fa-user"></i>
