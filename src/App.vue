@@ -5,8 +5,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
 
-    <div class="header_nav" id="nav">
-      <div class="container">
+    <div class="header_navigation" id="nav">
+      <div class="container-nav">
         <a class="navbar-brand" href="/">
           <div class="logo-image">
             <img src="./assets/logo.png" class="img-fluid" />
@@ -15,9 +15,12 @@
         </a>
         <nav>
           <div class="nav-links">
-            <button class="login-button">
+            <button class="login-button" @click="showModal">
               Login Account<i class="fa fa-fw fa-user"></i>
             </button>
+
+            <Modal v-show="isModalVisible" @close="closeModal" />
+
             <div class="dropdown-content">
               <router-link class="nav-link" to="/reviews">Reviews</router-link>
             </div>
@@ -34,6 +37,29 @@
   </div>
 </template>
 
+<script>
+import Modal from "./components/Modal.vue";
+
+export default {
+  name: "App",
+  components: {
+    Modal,
+  },
+  data() {
+    return {
+      isModalVisible: false,
+    };
+  },
+  methods: {
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
@@ -49,7 +75,7 @@
   background-color: #eff0f4;
 }
 
-.header_nav {
+.header_navigation {
   width: 100%;
   height: 100px;
   top: 0;
@@ -69,28 +95,28 @@
   color: #23b1bb;
 }
 
-.container {
+.container-nav {
   width: 95% !important;
   max-width: 3000px !important;
-  margin: auto;
   margin-left: 10px;
 }
 
-.header_nav .container {
+.header_navigation .container-nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding: 0px;
 }
 
-.header_nav .nav-links {
+.header_navigation .nav-links {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  margin-top: 20px;
 }
 
-.header_nav .nav_link {
+.header_navigation .nav_link {
   position: relative;
   padding-left: 30px;
 }
@@ -131,15 +157,19 @@
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
 
 .logo-image {
   display: flex;
