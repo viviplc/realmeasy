@@ -24,7 +24,7 @@
           </div>
            
         </div>
-        <button v-on:click="addToCart(product.itemId, quantity)" class="addToCartButton">Add to cart</button>
+        <button v-on:click="addToCart(product.itemId, quantity)" class="addToCartButton">{{addToCartText}}</button>
       </div>
       <ProductRatings :productId="product.itemId" />
     </div>
@@ -59,6 +59,7 @@ export default {
   data() {
         return {
         quantity: 1,
+        addToCartText: "Add to cart",
         };
     },
   computed: {
@@ -106,6 +107,10 @@ this.quantity += 1;
     addToCart(productId, quantity) {
       let selected = true;
       this.$store.commit("ADD_TO_CART", { productId, quantity, selected });
+      this.addToCartText = "Added";
+      setTimeout(function () {
+        this.addToCartText = "Add to cart";
+      }.bind(this), 700);
     },
   },
 };

@@ -9,7 +9,7 @@
       <h2>{{ productname }}</h2>
       <p>{{ productdescription }}</p>
       <h3>$ {{ productprice }}</h3>
-      <button v-on:click="addToCart(itemId, 1)">Add to cart</button>
+      <button v-on:click="addToCart(itemId, 1)">{{ addToCartText }}</button>
     </div>
   </div>
 </template>
@@ -45,10 +45,19 @@ export default {
     getProductUrl() {
       return "/#/item/" + this.itemId;
     },
-    addToCart(productId, quantity){
+    addToCart(productId, quantity) {
       let selected = true;
-      this.$store.commit("ADD_TO_CART", {productId, quantity, selected});
-    }
+      this.$store.commit("ADD_TO_CART", { productId, quantity, selected });
+      this.addToCartText = "Added";
+      setTimeout(function () {
+        this.addToCartText = "Add to cart";
+      }.bind(this), 700);
+    },
+  },
+  data() {
+    return {
+      addToCartText: "Add to cart",
+    };
   },
 };
 </script>
