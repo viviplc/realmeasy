@@ -15,26 +15,32 @@
         </router-link>
         <nav>
           <div class="nav-links">
-            <button v-if="isLoggedIn" class="login-button" @click="logoutUser">
-              {{loggedInProfile.name}}
+            <button v-if="isLoggedIn" class="login-button">
+              {{ loggedInProfile.name }}
               <div>
                 <img
-                class="rounded-circle z-depth-2"
-                style="width: 58px; border: 3px solid #23b1bb"
-                v-bind:src="loggedInProfile.profileImage"
-              />
-              <i class="fa fa-fw fa-chevron-down" id="chevron-down"></i>
+                  class="rounded-circle z-depth-2"
+                  style="width: 58px; border: 3px solid #23b1bb"
+                  v-bind:src="loggedInProfile.profileImage"
+                />
+                
+                <b-dropdown id="dropdown-1" class="m-md-2">
+                  <b-dropdown-item class="dropdown-opt">
+                    <router-link class="dropdown-link" to="/reviews">Reviews</router-link>
+                  </b-dropdown-item>
+                  <b-dropdown-divider></b-dropdown-divider>
+                  <b-dropdown-item @click="logoutUser" class="dropdown-opt">
+                    <router-link class="dropdown-link" to="/">Log Out</router-link>
+                  </b-dropdown-item>
+                </b-dropdown>
               </div>
             </button>
             <button v-else class="login-button" @click="showModal">
               Login Account<i class="fa fa-fw fa-user"></i>
             </button>
-            
+
             <Modal v-show="isModalVisible" @close="closeModal" />
 
-            <div class="dropdown-content">
-              <router-link class="nav-link" to="/reviews">Reviews</router-link>
-            </div>
             <div class="nav_link">
               <router-link class="btn-white" to="/shoppingCart">
                 <i class="fa fa-fw fa-shopping-cart"></i>
@@ -74,7 +80,7 @@ export default {
       profileImage: "https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg",
     }
       */
-    }
+    },
   },
   methods: {
     logoutUser() {
@@ -111,7 +117,6 @@ export default {
   left: 0;
   background: #fff;
   position: fixed;
-  overflow: hidden;
   z-index: 100;
   align-items: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -144,6 +149,7 @@ export default {
   align-items: baseline;
   margin-top: 20px;
 }
+
 
 .header_navigation .nav_link {
   position: relative;
@@ -210,4 +216,10 @@ export default {
   height: 85px;
   margin-right: 20px;
 }
+
+.dropdown-link{
+  color: black;
+  text-decoration: none;
+}
+
 </style>
