@@ -7,12 +7,12 @@
 
     <div class="header_navigation" id="nav">
       <div class="container-nav">
-        <a class="navbar-brand" href="/">
+        <router-link class="navbar-brand" to="/">
           <div class="logo-image">
             <img src="./assets/logo.png" class="img-fluid" />
             <h1>Realm Easy</h1>
           </div>
-        </a>
+        </router-link>
         <nav>
           <div class="nav-links">
             <button v-if="isLoggedIn" class="login-button" @click="logoutUser">
