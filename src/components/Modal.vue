@@ -38,6 +38,8 @@ export default {
     },
     onSubmit(){
       //logic to login user
+    this.$store.commit("LOGIN_USER");
+    this.$emit("close");
     }
   },
   data() {

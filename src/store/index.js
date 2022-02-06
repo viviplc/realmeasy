@@ -273,6 +273,7 @@ export default new Vuex.Store({
         ],
       },
     ],
+    isLoggedIn: false,
     loggedInUser: {
       userId: 123,
       name: "Julia Guo",
@@ -280,6 +281,12 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    LOGIN_USER(state) {
+      state.isLoggedIn = true;
+    },
+    LOGOUT_USER(state) {
+      state.isLoggedIn = false;
+    },
     SET_PRODUCTS(state, products) {
       state.products = products;
     },

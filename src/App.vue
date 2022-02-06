@@ -15,10 +15,13 @@
         </a>
         <nav>
           <div class="nav-links">
-            <button class="login-button" @click="showModal">
+            <button v-if="isLoggedIn" class="login-button" @click="logoutUser">
+              {{loggedInProfile.name}}<i class="fa fa-fw fa-user"></i>
+            </button>
+            <button v-else class="login-button" @click="showModal">
               Login Account<i class="fa fa-fw fa-user"></i>
             </button>
-
+            
             <Modal v-show="isModalVisible" @close="closeModal" />
 
             <div class="dropdown-content">
@@ -50,7 +53,25 @@ export default {
       isModalVisible: false,
     };
   },
+  computed: {
+    isLoggedIn() {
+      return this.$store.state.isLoggedIn;
+    },
+    loggedInProfile() {
+      return this.$store.state.loggedInUser;
+      /*This is what the profile structure is (you can edit it in the index.js of the store folder):
+      loggedInUser: {
+      userId: 123,
+      name: "Julia Guo",
+      profileImage: "https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg",
+    }
+      */
+    }
+  },
   methods: {
+    logoutUser() {
+      this.$store.commit("LOGOUT_USER");
+    },
     showModal() {
       this.isModalVisible = true;
     },
