@@ -301,6 +301,8 @@ export default new Vuex.Store({
         state.cart.push(
           {productId, quantity, selected}
         ) 
+      } else {
+        this.commit("UPDATE_PRODUCT_CART", {productId, quantity, selected});
       }
     },
     UPDATE_PRODUCT_CART(state, {productId, quantity, selected}) {

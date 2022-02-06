@@ -17,12 +17,14 @@
             <button class="btn-rounded" v-on:click="decreaseQuantity()">
               <i class="fa fa-minus"></i>
             </button>
-            <h3>{{ product.productQuantity }}</h3>
+            <h3>{{ quantity }}</h3>
             <button class="btn-rounded" v-on:click="increaseQuantity()">
               <i class="fa fa-plus"></i>
             </button>
           </div>
+           
         </div>
+        <button v-on:click="addToCart(product.itemId, quantity)" class="addToCartButton">Add to cart</button>
       </div>
       <ProductRatings :productId="product.itemId" />
     </div>
@@ -54,7 +56,13 @@ export default {
     Item,
     ProductRatings,
   },
+  data() {
+        return {
+        quantity: 1,
+        };
+    },
   computed: {
+    
     product() {
       let productsArray = this.$store.state.products;
       for (let product of productsArray) {
@@ -81,6 +89,17 @@ export default {
     }
   },
   methods: {
+    decreaseQuantity() {
+        if(this.quantity > 1) {
+this.quantity -= 1;
+        }
+        
+    },
+    increaseQuantity() {
+this.quantity += 1;
+        
+    },
+
     getImgUrl(pic) {
       return require("../assets/" + pic);
     },
@@ -120,6 +139,17 @@ export default {
   border-radius: 15px;
   margin: 23px;
   padding: 24px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.addToCartButton {
+  font-size: 20px;
+  background-color: #23b1bb;
+  border-radius: 15px;
+  width: 182px;
+  height: 45px;
+  border-color: transparent;
+  color: #eff0f4;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
