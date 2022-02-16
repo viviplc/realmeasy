@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import VuexPersistence from "vuex-persist";
+import Constants from "../constants";
+import axios from "axios";
 
 Vue.use(Vuex);
 
@@ -273,6 +275,8 @@ export default new Vuex.Store({
         ],
       },
     ],
+    isModalVisible: false,
+    loginSucessStatus: "none",
     isLoggedIn: false,
     loggedInUser: {
       userId: 123,
@@ -281,6 +285,12 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    SHOW_MODAL(state) {
+      state.isModalVisible = true;
+    },
+    HIDE_MODAL(state) {
+      state.isModalVisible = false;
+    },
     LOGIN_USER(state) {
       state.isLoggedIn = true;
     },
@@ -290,31 +300,29 @@ export default new Vuex.Store({
     SET_PRODUCTS(state, products) {
       state.products = products;
     },
-    ADD_TO_CART(state, {productId, quantity, selected}) {
+    ADD_TO_CART(state, { productId, quantity, selected }) {
       let inCart = false;
       for (let cartItem of state.cart) {
-        if(cartItem.productId == productId){
+        if (cartItem.productId == productId) {
           inCart = true;
         }
       }
-      if(!inCart){
-        state.cart.push(
-          {productId, quantity, selected}
-        ) 
+      if (!inCart) {
+        state.cart.push({ productId, quantity, selected });
       } else {
-        this.commit("UPDATE_PRODUCT_CART", {productId, quantity, selected});
+        this.commit("UPDATE_PRODUCT_CART", { productId, quantity, selected });
       }
     },
-    UPDATE_PRODUCT_CART(state, {productId, quantity, selected}) {
+    UPDATE_PRODUCT_CART(state, { productId, quantity, selected }) {
       for (let cartItem of state.cart) {
-      if(cartItem.productId == productId){
-        cartItem.quantity = quantity;
-        cartItem.selected = selected;
-      }
+        if (cartItem.productId == productId) {
+          cartItem.quantity = quantity;
+          cartItem.selected = selected;
+        }
       }
     },
     DELETE_PRODUCT_CART(state, productId) {
-      state.cart = state.cart.filter(item => item.productId !== productId)
+      state.cart = state.cart.filter((item) => item.productId !== productId);
     },
     CREATE_NEW_REVIEW(state, { productId, reviewText, reviewRating }) {
       for (let product of state.products) {
@@ -330,6 +338,17 @@ export default new Vuex.Store({
         }
       }
     },
+    LOGIN_NONE(state) {
+      state.loginSucessStatus = "none";
+    },
+    LOGIN_FAIL(state) {
+      state.loginSucessStatus = "failed";
+    },
+    LOGIN_SUCCESS(state, { user }) {
+      state.isLoggedIn = true;
+      state.loginSucessStatus = "success";
+      state.loggedInUser = user;
+    },
   },
   actions: {
     getProducts({ commit }) {
@@ -338,6 +357,35 @@ export default new Vuex.Store({
       //         commit('SET_PRODUCTS', response.data)
       // })
       commit("SET_PRODUCTSx", []);
+    },
+    loginUser({ commit }, { email, password }) {
+      const data = {
+        email,
+        password,
+      };
+      const formData = new FormData();
+      Object.keys(data).forEach((key) => {
+        formData.append(key, data[key]);
+      });
+
+      axios
+        .post(`${Constants.API_BASE_URL}/getUser.php`, formData)
+        .then((response) => {
+          if (response.data["user_id"] !== undefined) {
+            const user = {
+              ...response.data,
+              userId: response.data["user_id"],
+              profileImage: response.data["profile_image"],
+            };
+            commit("LOGIN_SUCCESS", { user: user });
+            commit("HIDE_MODAL");
+          } else {
+            commit("LOGIN_FAIL");
+          }
+        })
+        .catch(() => {
+          commit("LOGIN_FAIL");
+        });
     },
   },
   modules: {},

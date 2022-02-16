@@ -64,10 +64,12 @@ export default {
   },
   data() {
     return {
-      isModalVisible: false,
     };
   },
   computed: {
+    isModalVisible() {
+      return this.$store.state.isModalVisible;
+    },
     isLoggedIn() {
       return this.$store.state.isLoggedIn;
     },
@@ -87,9 +89,11 @@ export default {
       this.$store.commit("LOGOUT_USER");
     },
     showModal() {
+      this.$store.commit("SHOW_MODAL");
       this.isModalVisible = true;
     },
     closeModal() {
+      this.$store.commit("CLOSE_MODAL");
       this.isModalVisible = false;
     },
   },

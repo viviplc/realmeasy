@@ -12,6 +12,9 @@
         </div>
         <div class="modal-form-login">
           <form class="login-form" @submit.prevent="onSubmit">
+            <div v-if="loginSucessStatus === 'failed'" class="alert alert-danger" role="alert">
+            Wrong Email or Password.
+          </div>
             <p>
               <label for="email">Email</label>
               <input type="text" v-model="email">
@@ -32,20 +35,28 @@
 <script>
 export default {
   name: "Modal",
+  mounted() {
+      this.email = "";
+      this.password = "";
+    },
   methods: {
+    
     close() {
       this.$emit("close");
     },
     onSubmit(){
-      //logic to login user
-    this.$store.commit("LOGIN_USER");
-    this.$emit("close");
+    this.$store.dispatch("loginUser", { email: this.email, password: this.password});
     }
   },
   data() {
     return {
-      email: null,
-      password: null,
+      email: "",
+      password: "",
+    }
+  },
+  computed: {
+    loginSucessStatus() {
+      return this.$store.state.loginSucessStatus;
     }
   }
 };
