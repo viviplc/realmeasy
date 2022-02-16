@@ -351,12 +351,22 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    getProducts({ commit }) {
-      // axios.get('https://url.com/products')
-      //     .then(response => {
-      //         commit('SET_PRODUCTS', response.data)
-      // })
-      commit("SET_PRODUCTSx", []);
+    async getProducts({ commit }) {
+      try{
+        const response = await axios.get(`${Constants.API_BASE_URL}/getProduct.php`);
+        const productArray = response.data.map(item => {
+          return {
+            itemId: item["item_id"],
+            image: item["image"],
+            productName: item["product_name"],
+            productDescription: item["product_description"],
+            productPrice: parseFloat(item["product_price"])
+          };
+        });
+        commit('SET_PRODUCTS', productArray)
+      } catch {
+        commit('SET_PRODUCTS', [])
+      }
     },
     loginUser({ commit }, { email, password }) {
       const data = {
