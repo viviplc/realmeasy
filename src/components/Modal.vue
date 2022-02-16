@@ -42,7 +42,7 @@ export default {
   methods: {
     
     close() {
-      this.$emit("close");
+      this.$store.commit("HIDE_MODAL");
     },
     onSubmit(){
     this.$store.dispatch("loginUser", { email: this.email, password: this.password});

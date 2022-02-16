@@ -90,11 +90,9 @@ export default {
     },
     showModal() {
       this.$store.commit("SHOW_MODAL");
-      this.isModalVisible = true;
     },
     closeModal() {
-      this.$store.commit("CLOSE_MODAL");
-      this.isModalVisible = false;
+      this.$store.commit("HIDE_MODAL");
     },
   },
 };
