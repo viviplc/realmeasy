@@ -73,22 +73,22 @@ export default {
       let quantity = this.productquantity;
       let selected = !this.selected;
       let productId = this.itemId;
-        this.$store.commit("UPDATE_PRODUCT_CART", {
+        this.$store.dispatch("updateProductInCart", {
           productId,
           quantity,
           selected,
-        });
+        })
     },
     decreaseQuantity() {
       if (this.productquantity > 1) {
         let quantity = this.productquantity - 1;
         let selected = this.selected;
         let productId = this.itemId;
-        this.$store.commit("UPDATE_PRODUCT_CART", {
+        this.$store.dispatch("updateProductInCart", {
           productId,
           quantity,
           selected,
-        });
+        })
         //this.productquantity -= 1;
       }
     },
@@ -96,11 +96,11 @@ export default {
       let quantity = this.productquantity + 1;
       let selected = this.selected;
       let productId = this.itemId;
-        this.$store.commit("UPDATE_PRODUCT_CART", {
+        this.$store.dispatch("updateProductInCart", {
           productId,
           quantity,
           selected,
-        });
+        })
     },
     deleteCartItem(productId) {
       this.$store.dispatch("deleteProductFromCart", {productId})

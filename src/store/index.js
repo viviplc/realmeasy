@@ -189,8 +189,6 @@ export default new Vuex.Store({
     },
     addProductToCart({ commit }, { productId, quantity }) {
       let selected = true;
-      commit("ADD_TO_CART", { productId, quantity, selected });
-
       if (
         !Object.prototype.hasOwnProperty.call(this.state.cartIds, productId)
       ) {
@@ -213,12 +211,38 @@ export default new Vuex.Store({
           .then((response) => {
             if (response.data["cart_id"] !== undefined) {
               this.state.cartIds[productId] = response.data["cart_id"];
+              commit("ADD_TO_CART", { productId, quantity, selected });
             }
           })
           .catch(() => {
             console.log("Error adding to cart");
           });
       }
+    },
+    updateProductInCart({ commit }, { productId, quantity, selected }) {
+      const selectedVal = selected == true ? "1" : "0";
+      const cartId = this.state.cartIds[productId];
+
+        const data = {
+          cart_id: cartId,
+          product_quantity: quantity,
+          selected: selectedVal
+        };
+
+        const formData = new FormData();
+        Object.keys(data).forEach((key) => {
+          formData.append(key, data[key]);
+        });
+
+        axios
+          .post(`${Constants.API_BASE_URL}/updateProductInCart.php`, formData)
+          .then(() => {
+            commit("UPDATE_PRODUCT_CART",{ productId, quantity, selected });
+          })
+          .catch(() => {
+            console.log("Error adding to cart");
+          });
+      
     },
   },
   modules: {},
