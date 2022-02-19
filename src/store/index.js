@@ -32,6 +32,9 @@ export default new Vuex.Store({
     },
     LOGOUT_USER(state) {
       state.isLoggedIn = false;
+      state.loggedInUser = {};
+      state.cart = [];
+      state.cartIds = {};
     },
     SET_PRODUCTS(state, products) {
       state.products = products;
