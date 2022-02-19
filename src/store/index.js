@@ -63,8 +63,10 @@ export default new Vuex.Store({
         }
       }
     },
-    DELETE_PRODUCT_CART(state, productId) {
+    DELETE_PRODUCT_CART(state, {productId}) {
+      console.log("DELETING " + productId)
       state.cart = state.cart.filter((item) => item.productId !== productId);
+      delete state.cartIds[productId];
     },
     CREATE_NEW_REVIEW(state, { productId, reviewText, reviewRating }) {
       for (let product of state.products) {
@@ -168,8 +170,22 @@ export default new Vuex.Store({
       }
     },
     deleteProductFromCart({ commit }, { productId }) {
-      commit("DELETE_PRODUCT_CART", { productId });
       // delete from cartIds in state and send api call to db to delete record
+      const cart_id = this.state.cartIds[productId];
+      const data = {cart_id};
+      const formData = new FormData();
+        Object.keys(data).forEach((key) => {
+          formData.append(key, data[key]);
+        });
+        axios
+          .post(`${Constants.API_BASE_URL}/deleteProductFromCart.php`, formData)
+          .then(() => {
+            console.log("Deleted from cart")
+            commit("DELETE_PRODUCT_CART", { productId });
+          })
+          .catch(() => {
+            console.log("Error deleting from cart");
+          });
     },
     addProductToCart({ commit }, { productId, quantity }) {
       let selected = true;

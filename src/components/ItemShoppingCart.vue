@@ -103,7 +103,7 @@ export default {
         });
     },
     deleteCartItem(productId) {
-      this.$store.commit("DELETE_PRODUCT_CART", productId);
+      this.$store.dispatch("deleteProductFromCart", {productId})
     },
   },
 };
