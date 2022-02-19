@@ -13,7 +13,7 @@ const vuexLocal = new VuexPersistence({
 export default new Vuex.Store({
   state: {
     cart: [],
-    cartIds:{},
+    cartIds: {},
     products: [
       {
         itemId: 1,
@@ -353,20 +353,22 @@ export default new Vuex.Store({
   },
   actions: {
     async getProducts({ commit }) {
-      try{
-        const response = await axios.get(`${Constants.API_BASE_URL}/getProduct.php`);
-        const productArray = response.data.map(item => {
+      try {
+        const response = await axios.get(
+          `${Constants.API_BASE_URL}/getProduct.php`
+        );
+        const productArray = response.data.map((item) => {
           return {
             itemId: Number(item["item_id"]),
             image: item["image"],
             productName: item["product_name"],
             productDescription: item["product_description"],
-            productPrice: parseFloat(item["product_price"])
+            productPrice: parseFloat(item["product_price"]),
           };
         });
-        commit('SET_PRODUCTS', productArray)
+        commit("SET_PRODUCTS", productArray);
       } catch {
-        commit('SET_PRODUCTS', [])
+        commit("SET_PRODUCTS", []);
       }
     },
     loginUser({ commit }, { email, password }) {
@@ -398,16 +400,23 @@ export default new Vuex.Store({
           commit("LOGIN_FAIL");
         });
     },
-    addProductToCart({commit}, { productId, quantity }) {
-        let selected = true;
-        commit("ADD_TO_CART", { productId, quantity, selected });
-        
+    deleteProductFromCart({ commit }, { productId }) {
+      commit("DELETE_PRODUCT_CART", {productId});
+      // delete from cartIds in state and send api call to db to delete record
+    },
+    addProductToCart({ commit }, { productId, quantity }) {
+      let selected = true;
+      commit("ADD_TO_CART", { productId, quantity, selected });
+
+      if (
+        !Object.prototype.hasOwnProperty.call(this.state.cartIds, productId)
+      ) {
         const data = {
-          "product_id" : productId,
-          "product_quantity" : quantity,
+          product_id: productId,
+          product_quantity: quantity,
         };
 
-        if(this.state.isLoggedIn) {
+        if (this.state.isLoggedIn) {
           data["user_id"] = this.state.loggedInUser.userId;
         }
 
@@ -415,7 +424,7 @@ export default new Vuex.Store({
         Object.keys(data).forEach((key) => {
           formData.append(key, data[key]);
         });
-  
+
         axios
           .post(`${Constants.API_BASE_URL}/addProductToCart.php`, formData)
           .then((response) => {
@@ -426,7 +435,7 @@ export default new Vuex.Store({
           .catch(() => {
             console.log("Error adding to cart");
           });
-      
+      }
     },
   },
   modules: {},
