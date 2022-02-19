@@ -14,276 +14,11 @@ export default new Vuex.Store({
   state: {
     cart: [],
     cartIds: {},
-    products: [
-      {
-        itemId: 1,
-        image: "Picture1.jpg",
-        productName: "Product Name",
-        productDescription:
-          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: 29.19,
-        reviews: [
-          {
-            userId: 123,
-            name: "Bill Gates",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 1.23,
-          },
-          {
-            userId: 193,
-            name: "Romeno Wenogk",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 4.67,
-          },
-        ],
-      },
-      {
-        itemId: 2,
-        image: "Picture2.jpg",
-        productName: "Product Name 2",
-        productDescription:
-          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: 29.19,
-        reviews: [
-          {
-            userId: 123,
-            name: "Bill Gates",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 1.23,
-          },
-          {
-            userId: 193,
-            name: "Romeno Wenogk",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 4.67,
-          },
-        ],
-      },
-      {
-        itemId: 3,
-        image: "Picture3.jpg",
-        productName: "Product Name 3",
-        productDescription:
-          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: 29.19,
-        reviews: [
-          {
-            userId: 123,
-            name: "Bill Gates",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 1.23,
-          },
-          {
-            userId: 193,
-            name: "Romeno Wenogk",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 4.67,
-          },
-        ],
-      },
-      {
-        itemId: 4,
-        image: "Picture4.jpg",
-        productName: "Product Name",
-        productDescription:
-          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: 29.19,
-        reviews: [
-          {
-            userId: 123,
-            name: "Bill Gates",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 1.23,
-          },
-          {
-            userId: 193,
-            name: "Romeno Wenogk",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 4.67,
-          },
-        ],
-      },
-      {
-        itemId: 5,
-        image: "Picture5.jpg",
-        productName: "Product Name",
-        productDescription:
-          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: 29.19,
-        reviews: [
-          {
-            userId: 123,
-            name: "Bill Gates",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 1.23,
-          },
-          {
-            userId: 193,
-            name: "Romeno Wenogk",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 4.67,
-          },
-        ],
-      },
-      {
-        itemId: 6,
-        image: "Picture6.jpg",
-        productName: "Product Name",
-        productDescription:
-          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: 29.19,
-        reviews: [
-          {
-            userId: 123,
-            name: "Bill Gates",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 1.23,
-          },
-          {
-            userId: 193,
-            name: "Romeno Wenogk",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 4.67,
-          },
-        ],
-      },
-      {
-        itemId: 7,
-        image: "Picture7.jpg",
-        productName: "Product Name",
-        productDescription:
-          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: 29.19,
-        reviews: [
-          {
-            userId: 123,
-            name: "Bill Gates",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 1.23,
-          },
-          {
-            userId: 193,
-            name: "Romeno Wenogk",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 4.67,
-          },
-        ],
-      },
-      {
-        itemId: 8,
-        image: "Picture8.jpg",
-        productName: "Product Name",
-        productDescription:
-          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: 29.19,
-        reviews: [
-          {
-            userId: 123,
-            name: "Bill Gates",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 1.23,
-          },
-          {
-            userId: 193,
-            name: "Romeno Wenogk",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 4.67,
-          },
-        ],
-      },
-      {
-        itemId: 9,
-        image: "Picture9.jpg",
-        productName: "Product Name",
-        productDescription:
-          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: 29.19,
-        reviews: [
-          {
-            userId: 123,
-            name: "Bill Gates",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 1.23,
-          },
-          {
-            userId: 193,
-            name: "Romeno Wenogk",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 4.67,
-          },
-        ],
-      },
-      {
-        itemId: 10,
-        image: "Picture10.jpg",
-        productName: "Product Name",
-        productDescription:
-          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-        productPrice: 29.19,
-        reviews: [
-          {
-            userId: 123,
-            name: "Bill Gates",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 1.23,
-          },
-          {
-            userId: 193,
-            name: "Romeno Wenogk",
-            profileUrl:
-              "https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg",
-            text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet",
-            rating: 4.67,
-          },
-        ],
-      },
-    ],
+    products: [],
     isModalVisible: false,
     loginSucessStatus: "none",
     isLoggedIn: false,
-    loggedInUser: {
-      userId: 123,
-      name: "Julia Guo",
-      profileImage: "https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg",
-    },
+    loggedInUser: {},
   },
   mutations: {
     SHOW_MODAL(state) {
@@ -300,6 +35,9 @@ export default new Vuex.Store({
     },
     SET_PRODUCTS(state, products) {
       state.products = products;
+    },
+    SET_CART(state, cart) {
+      state.cart = cart;
     },
     ADD_TO_CART(state, { productId, quantity, selected }) {
       let inCart = false;
@@ -400,8 +138,29 @@ export default new Vuex.Store({
           commit("LOGIN_FAIL");
         });
     },
+    async getUserCart({ commit }) {
+      if (this.state.isLoggedIn) {
+        try {
+          const response = await axios.get(
+            `${Constants.API_BASE_URL}/getProductsInCart.php?user_id=${this.state.loggedInUser.userId}`
+          );
+          const cartItemArray = response.data.map((item) => {
+            const selected = item["selected"] == "0" ? false : true;
+            return {
+              productId: Number(item["product_id"]),
+              quantity: Number(item["product_quantity"]),
+              selected: selected,
+            };
+          });
+          alert("cartItemArray: " + JSON.stringify(cartItemArray))
+          commit("SET_CART", cartItemArray);
+        } catch {
+          console.log("Error getting user cart");
+        }
+      }
+    },
     deleteProductFromCart({ commit }, { productId }) {
-      commit("DELETE_PRODUCT_CART", {productId});
+      commit("DELETE_PRODUCT_CART", { productId });
       // delete from cartIds in state and send api call to db to delete record
     },
     addProductToCart({ commit }, { productId, quantity }) {

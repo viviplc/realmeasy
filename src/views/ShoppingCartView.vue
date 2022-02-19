@@ -97,6 +97,9 @@ export default {
       shippingprice: 5.23,
     };
   },
+  mounted() {
+    this.$store.dispatch("getUserCart");
+  },
 };
 </script>
 
