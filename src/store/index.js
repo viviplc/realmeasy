@@ -13,6 +13,7 @@ const vuexLocal = new VuexPersistence({
 export default new Vuex.Store({
   state: {
     cart: [],
+    cartIds:{},
     products: [
       {
         itemId: 1,
@@ -356,7 +357,7 @@ export default new Vuex.Store({
         const response = await axios.get(`${Constants.API_BASE_URL}/getProduct.php`);
         const productArray = response.data.map(item => {
           return {
-            itemId: item["item_id"],
+            itemId: Number(item["item_id"]),
             image: item["image"],
             productName: item["product_name"],
             productDescription: item["product_description"],
@@ -396,6 +397,36 @@ export default new Vuex.Store({
         .catch(() => {
           commit("LOGIN_FAIL");
         });
+    },
+    addProductToCart({commit}, { productId, quantity }) {
+        let selected = true;
+        commit("ADD_TO_CART", { productId, quantity, selected });
+        
+        const data = {
+          "product_id" : productId,
+          "product_quantity" : quantity,
+        };
+
+        if(this.state.isLoggedIn) {
+          data["user_id"] = this.state.loggedInUser.userId;
+        }
+
+        const formData = new FormData();
+        Object.keys(data).forEach((key) => {
+          formData.append(key, data[key]);
+        });
+  
+        axios
+          .post(`${Constants.API_BASE_URL}/addProductToCart.php`, formData)
+          .then((response) => {
+            if (response.data["cart_id"] !== undefined) {
+              this.state.cartIds[productId] = response.data["cart_id"];
+            }
+          })
+          .catch(() => {
+            console.log("Error adding to cart");
+          });
+      
     },
   },
   modules: {},
