@@ -146,6 +146,7 @@ export default new Vuex.Store({
     },
     async getUserCart({ commit }) {
       if (this.state.isLoggedIn) {
+        if(Object.keys(this.state.cartIds).length == 0) {
         try {
           const response = await axios.get(
             `${Constants.API_BASE_URL}/getProductsInCart.php?user_id=${this.state.loggedInUser.userId}`
@@ -154,6 +155,7 @@ export default new Vuex.Store({
           for (let cartItem of response.data){
             newCartIdsObj[Number(cartItem["product_id"])] = Number(cartItem["cart_id"]);
           }
+
           this.state.cartIds = newCartIdsObj;
           const cartItemArray = response.data.map((item) => {
             const selected = item["selected"] == "0" ? false : true;
@@ -164,9 +166,11 @@ export default new Vuex.Store({
             };
           });
           commit("SET_CART", cartItemArray);
+          
         } catch {
           console.log("Error getting user cart");
         }
+      }
       }
     },
     deleteProductFromCart({ commit }, { productId }) {
