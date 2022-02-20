@@ -105,8 +105,7 @@ this.quantity += 1;
       return require("../assets/" + pic);
     },
     addToCart(productId, quantity) {
-      let selected = true;
-      this.$store.commit("ADD_TO_CART", { productId, quantity, selected });
+      this.$store.dispatch("addProductToCart", { productId, quantity });
       this.addToCartText = "Added";
       setTimeout(function () {
         this.addToCartText = "Add to cart";
