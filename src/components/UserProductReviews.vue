@@ -90,11 +90,15 @@ export default {
   methods: {
     reviewButtonClicked: function (id, text, rating) {
       //alert(`Creating review for product #${id} with text: '${text}' and rating: ${rating}`)
-      this.$store.commit("CREATE_NEW_REVIEW", {
+      this.$store.dispatch("addReviewToProduct", {
         productId: id,
         reviewText: text,
-        reviewRating: rating,
-      });
+        reviewRating: rating,})
+      // this.$store.commit("CREATE_NEW_REVIEW", {
+      //   productId: id,
+      //   reviewText: text,
+      //   reviewRating: rating,
+      // });
     },
     getImgUrl(pic) {
       return require("../assets/" + pic);

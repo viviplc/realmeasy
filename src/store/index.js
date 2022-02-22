@@ -3,7 +3,7 @@ import Vuex from "vuex";
 import VuexPersistence from "vuex-persist";
 import Constants from "../constants";
 import axios from "axios";
-
+import router from '../router'
 Vue.use(Vuex);
 
 const vuexLocal = new VuexPersistence({
@@ -263,6 +263,34 @@ export default new Vuex.Store({
             if (response.data["cart_id"] !== undefined) {
               this.state.cartIds[productId] = response.data["cart_id"];
               commit("ADD_TO_CART", { productId, quantity, selected });
+            }
+          })
+          .catch(() => {
+            console.log("Error adding to cart");
+          });
+      }
+    },
+    addReviewToProduct(_, { productId, reviewText, reviewRating }) {
+      if (
+        this.state.isLoggedIn
+      ) {
+        const data = {
+          product_id: productId,
+          review_text: reviewText,
+          review_rating : reviewRating,
+          user_id : this.state.loggedInUser.userId
+        };
+
+        const formData = new FormData();
+        Object.keys(data).forEach((key) => {
+          formData.append(key, data[key]);
+        });
+
+        axios
+          .post(`${Constants.API_BASE_URL}/addReviewToProduct.php`, formData)
+          .then((response) => {
+            if (response.data["review_id"] !== undefined) {
+              router.push({ path: `/item/${productId}` });
             }
           })
           .catch(() => {
