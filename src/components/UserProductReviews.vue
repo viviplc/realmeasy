@@ -76,7 +76,7 @@ export default {
   },
   computed: {
     products() {
-      let productsArray = this.$store.state.products;
+      let productsArray = this.$store.state.productsBought;
       for (let product of productsArray) {
         product.currentUserReviewText = "";
         product.currentUserReviewRating = 0;
@@ -85,7 +85,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("getProducts");
+    this.$store.dispatch("getProductsBought");
   },
   methods: {
     reviewButtonClicked: function (id, text, rating) {

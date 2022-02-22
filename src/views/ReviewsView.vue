@@ -31,26 +31,26 @@ export default {
   },
   data() {
     return {
-        items: [
-        {
-          itemId: 4,
-          image: "Picture4.jpg",
-          productName: "Product Name",
-          productDescription:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-          productPrice: "$29,19",
-        },
-        {
-          itemId: 5,
-          image: "Picture5.jpg",
-          productName: "Product Name",
-          productDescription:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
-          productPrice: "$29,19",
-        },
-      ],
+        
     };
   },
+  computed: {
+    items() {
+      let productsArray = this.$store.state.products;
+      let productIds = []
+      this.$store.state.cart.forEach(item => {
+        productIds.push(item.productId);
+      });
+      let finalResult = [];
+      for(let product of productsArray){
+        const needle = productIds.indexOf(product.itemId);
+        if(needle == -1){
+          finalResult.push(product)
+        }
+      }
+      return finalResult.slice(0, 3);
+    }
+  }
 };
 </script>
 

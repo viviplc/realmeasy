@@ -15,6 +15,8 @@ export default new Vuex.Store({
     cart: [],
     cartIds: {},
     products: [],
+    productsBought: [],
+    productReviews: {},
     isModalVisible: false,
     loginSucessStatus: "none",
     isLoggedIn: false,
@@ -112,6 +114,51 @@ export default new Vuex.Store({
         commit("SET_PRODUCTS", productArray);
       } catch {
         commit("SET_PRODUCTS", []);
+      }
+    },
+    async getProductsBought() {
+      if(this.state.isLoggedIn){
+        try {
+          const response = await axios.get(
+            `${Constants.API_BASE_URL}/getBoughtProducts.php?user_id=${this.state.loggedInUser.userId}`
+          );
+          const productArray = response.data.map((item) => {
+            return {
+              itemId: Number(item["item_id"]),
+              image: item["image"],
+              productName: item["product_name"],
+              productDescription: item["product_description"],
+              productPrice: parseFloat(item["product_price"]),
+            };
+          });
+          this.state.productsBought = productArray;
+        } catch {
+          alert(JSON.stringify(`${Constants.API_BASE_URL}/getBoughtProducts.php?user_id=${this.state.loggedInUser.userId}`));
+          this.state.productsBought = [];
+        }
+      }
+    },
+    async getProductReviews(_, {productId}) {
+      if(this.state.isLoggedIn){
+        try {
+          const response = await axios.get(
+            `${Constants.API_BASE_URL}/getReviews.php?product_id=${productId}`
+          );
+          const reviewArray = response.data.map((item) => {
+            return {
+              userId: Number(item["user_id"]),
+              reviewId: Number(item["review_id"]),
+              image: item["image"],
+              profileUrl: item["profile_image"],
+              name: item["name"],
+              rating: parseFloat(item["review_rating"]),
+              text: item["review_text"],
+            };
+          });
+          this.state.productReviews[productId] = reviewArray;
+        } catch {
+          this.state.productReviews[productId] = [];
+        }
       }
     },
     loginUser({ commit, dispatch }, { email, password }) {
