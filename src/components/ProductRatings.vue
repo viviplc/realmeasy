@@ -16,7 +16,7 @@
           ></b-form-rating>
         </div>
       </div>
-      <div class="row" v-for="review of reviews" :key="review.reviewId">
+      <div class="row" v-for="review of reviews" :key="review.reviewId" style="margin-bottom:15px;">
         <div class="col">
           <div class="row">
             <div class="col-md-2 col-lg-2" style="padding-right: 50px">
