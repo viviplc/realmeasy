@@ -1,6 +1,6 @@
 <template>
     <div class="resume-container">
-        <button>Proceed to Checkout</button>
+        <button v-on:click="checkoutCart()">Proceed to Checkout</button>
         <h1>Order summary</h1>
         <div class="group-prices">
             <div class="prices-labels">
@@ -66,6 +66,11 @@ export default {
             parseFloat(this.pstrstqst);
             return num.toFixed(2);
         },
+    },
+    methods: {
+        checkoutCart() {
+            this.$store.dispatch("checkoutUserCart");
+        }
     }
 }
 

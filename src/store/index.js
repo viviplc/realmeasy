@@ -248,6 +248,37 @@ export default new Vuex.Store({
           });
       
     },
+    checkoutUserCart() {
+       const cartIds = Object.values(this.state.cartIds);
+       if(cartIds.length > 0){
+        if(this.state.isLoggedIn){
+        const data = {
+          user_id: this.state.loggedInUser.userId,
+          cart_ids: JSON.stringify(cartIds),
+        };
+
+        const formData = new FormData();
+        Object.keys(data).forEach((key) => {
+          formData.append(key, data[key]);
+        });
+
+        axios
+          .post(`${Constants.API_BASE_URL}/createOrder.php`, formData)
+          .then((response) => {
+            if (response.data["order_id"] !== undefined) {
+              alert("Created order " + response.data["order_id"] + "!");
+              this.state.cart = [];
+              this.state.cartIds = {};
+            }
+          })
+          .catch(() => {
+            console.log("Error adding to cart");
+          });
+        } else {
+          alert("Please login to checkout");
+        }
+      }
+    },
   },
   modules: {},
   plugins: [vuexLocal.plugin],
