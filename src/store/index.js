@@ -3,7 +3,6 @@ import Vuex from "vuex";
 import VuexPersistence from "vuex-persist";
 import Constants from "../constants";
 import axios from "axios";
-import router from '../router'
 Vue.use(Vuex);
 
 const vuexLocal = new VuexPersistence({
@@ -270,7 +269,7 @@ export default new Vuex.Store({
           });
       }
     },
-    addReviewToProduct(_, { productId, reviewText, reviewRating }) {
+    addReviewToProduct({dispatch}, { productId, reviewText, reviewRating }) {
       if (
         this.state.isLoggedIn
       ) {
@@ -290,11 +289,12 @@ export default new Vuex.Store({
           .post(`${Constants.API_BASE_URL}/addReviewToProduct.php`, formData)
           .then((response) => {
             if (response.data["review_id"] !== undefined) {
-              router.push({ path: `/item/${productId}` });
+              alert("Added review");
+              dispatch("getProductReviews", {productId});
             }
           })
-          .catch(() => {
-            console.log("Error adding to cart");
+          .catch((err) => {
+            console.log("Error adding to cart: " + err);
           });
       }
     },

@@ -94,11 +94,6 @@ export default {
         productId: id,
         reviewText: text,
         reviewRating: rating,})
-      // this.$store.commit("CREATE_NEW_REVIEW", {
-      //   productId: id,
-      //   reviewText: text,
-      //   reviewRating: rating,
-      // });
     },
     getImgUrl(pic) {
       return require("../assets/" + pic);
