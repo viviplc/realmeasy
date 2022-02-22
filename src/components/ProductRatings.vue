@@ -16,7 +16,7 @@
           ></b-form-rating>
         </div>
       </div>
-      <div class="row" v-for="review of reviews" :key="review.userId">
+      <div class="row" v-for="review of reviews" :key="review.reviewId">
         <div class="col">
           <div class="row">
             <div class="col-md-2 col-lg-1" style="padding-right: 50px">
@@ -69,13 +69,8 @@ export default {
   },
   computed: {
     reviews() {
-      let productsArray = this.$store.state.products;
-      for (let product of productsArray) {
-        if (product.itemId == this.productId) {
-          return product.reviews;
-        }
-      }
-      return [];
+      const productReviews = this.$store.state.productReviews;
+      return productReviews[this.productId];
     },
     averageProductRating: function () {
       let totalRating = 0;
@@ -85,7 +80,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("getProducts");
+    this.$store.dispatch("getProductReviews", {productId : this.productId});
   },
 };
 </script>
