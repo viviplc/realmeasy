@@ -19,14 +19,14 @@
       <div class="row" v-for="review of reviews" :key="review.reviewId">
         <div class="col">
           <div class="row">
-            <div class="col-md-2 col-lg-1" style="padding-right: 50px">
+            <div class="col-md-2 col-lg-2" style="padding-right: 50px">
               <img
                 class="rounded-circle z-depth-2"
                 style="width: 100px; border: 1px solid #23b1bb"
                 v-bind:src="review.profileUrl"
               />
             </div>
-            <div class="col-md-10 col-lg-11">
+            <div class="col-md-10 col-lg-10">
               <div class="row">
                 <div class="col">
                   <div class="d-flex justify-content-between">
