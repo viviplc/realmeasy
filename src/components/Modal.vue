@@ -21,7 +21,7 @@
             </p>
             <p>
               <label for="password">Password</label>            
-              <input type="text" v-model="password">
+              <input type="password" v-model="password">
             </p>
             <input class="btn-submit-login" type="submit" name="submit-login" id="submit-login" value="Log In">
           </form>
