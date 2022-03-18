@@ -94,6 +94,7 @@ export default {
         productId: id,
         reviewText: text,
         reviewRating: rating,})
+        
     },
     getImgUrl(pic) {
       return require("../assets/" + pic);

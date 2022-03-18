@@ -144,15 +144,15 @@ export default new Vuex.Store({
       if(this.state.isLoggedIn){
         try {
           const response = await axios.get(
-            `${Constants.API_BASE_URL}/getReviews.php?product_id=${productId}`
+            `${Constants.API_BASE_URL}/products/${productId}`
           );
-          const reviewArray = response.data.map((item) => {
+          const reviewArray = response.data.reviews.map((item) => {
             return {
-              userId: Number(item["user_id"]),
-              reviewId: Number(item["review_id"]),
+              userId: item["user_id"]["_id"],
+              reviewId: item["_id"],
               image: item["image"],
-              profileUrl: item["profile_image"],
-              name: item["name"],
+              profileUrl: item["user_id"]["profile_image"],
+              name: item["user_id"]["name"],
               rating: parseFloat(item["review_rating"]),
               text: item["review_text"],
             };
@@ -288,7 +288,7 @@ export default new Vuex.Store({
         });
 
         axios
-          .post(`${Constants.API_BASE_URL}/addReviewToProduct.php`, formData)
+          .post(`${Constants.API_BASE_URL}/products/${productId}/review`, data)
           .then((response) => {
             if (response.data["review_id"] !== undefined) {
               alert("Added review");
