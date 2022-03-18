@@ -40,12 +40,13 @@
             </button>
 
             <Modal v-show="isModalVisible" @close="closeModal" />
-
+            <!--
             <div class="nav_link">
               <router-link class="btn-white" to="/shoppingCart">
                 <i class="fa fa-fw fa-shopping-cart"></i>
               </router-link>
             </div>
+            -->
           </div>
         </nav>
       </div>
