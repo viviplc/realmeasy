@@ -99,11 +99,11 @@ export default new Vuex.Store({
     async getProducts({ commit }) {
       try {
         const response = await axios.get(
-          `${Constants.API_BASE_URL}/getProduct.php`
+          `${Constants.API_BASE_URL}/products`
         );
         const productArray = response.data.map((item) => {
           return {
-            itemId: Number(item["item_id"]),
+            itemId: item["_id"],
             image: item["image"],
             productName: item["product_name"],
             productDescription: item["product_description"],

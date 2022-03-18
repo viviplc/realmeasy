@@ -62,7 +62,7 @@
 <script>
 export default {
   props: {
-    productId: Number,
+    productId: String,
   },
   data() {
     return {};

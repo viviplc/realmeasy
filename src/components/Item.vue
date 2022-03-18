@@ -18,7 +18,7 @@
 export default {
   props: {
     itemId: {
-      type: Number,
+      type: String,
       required: true,
     },
     image: {
