@@ -171,12 +171,12 @@ export default new Vuex.Store({
       });
 
       axios
-        .post(`${Constants.API_BASE_URL}/getUser.php`, formData)
+        .post(`${Constants.API_BASE_URL}/user/login`, data)
         .then((response) => {
-          if (response.data["user_id"] !== undefined) {
+          if (response.data["_id"] !== undefined) {
             const user = {
               ...response.data,
-              userId: response.data["user_id"],
+              userId: response.data["_id"],
               profileImage: response.data["profile_image"],
             };
             commit("LOGIN_SUCCESS", { user: user });
