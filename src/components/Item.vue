@@ -9,7 +9,9 @@
       <h2>{{ productname }}</h2>
       <p>{{ productdescription }}</p>
       <h3>$ {{ productprice }}</h3>
-      <button v-on:click="addToCart(itemId, 1)">{{ addToCartText }}</button>
+      <!--
+        <button v-on:click="addToCart(itemId, 1)">{{ addToCartText }}</button>
+        -->
     </div>
   </div>
 </template>
