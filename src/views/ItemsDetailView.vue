@@ -24,7 +24,7 @@
           </div>
            
         </div>
-        <button v-on:click="addToCart(product.itemId, quantity)" class="addToCartButton">{{addToCartText}}</button>
+        <button v-on:click="purchaseProduct(product.itemId, quantity)" class="addToCartButton">{{addToCartText}}</button>
       </div>
       <ProductRatings :productId="product.itemId" />
     </div>
@@ -62,7 +62,7 @@ export default {
   data() {
         return {
         quantity: 1,
-        addToCartText: "Add to cart",
+        addToCartText: "Purchase",
         };
     },
   computed: {
@@ -107,11 +107,11 @@ this.quantity += 1;
     getImgUrl(pic) {
       return require("../assets/" + pic);
     },
-    addToCart(productId, quantity) {
-      this.$store.dispatch("addProductToCart", { productId, quantity });
-      this.addToCartText = "Added";
+    purchaseProduct(productId, quantity) {
+      this.$store.dispatch("purchaseProduct", { productId, quantity });
+      this.addToCartText = "Done";
       setTimeout(function () {
-        this.addToCartText = "Add to cart";
+        this.addToCartText = "Purchase";
       }.bind(this), 700);
     },
   },

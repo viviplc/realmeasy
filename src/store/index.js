@@ -119,20 +119,23 @@ export default new Vuex.Store({
       if(this.state.isLoggedIn){
         try {
           const response = await axios.get(
-            `${Constants.API_BASE_URL}/getBoughtProducts.php?user_id=${this.state.loggedInUser.userId}`
+            `${Constants.API_BASE_URL}/orders/${this.state.loggedInUser.userId}`
           );
           const productArray = response.data.map((item) => {
             return {
-              itemId: Number(item["item_id"]),
-              image: item["image"],
-              productName: item["product_name"],
-              productDescription: item["product_description"],
-              productPrice: parseFloat(item["product_price"]),
+              itemId: item["product_id"]["_id"],
+              image: item["product_id"]["image"],
+              productName: item["product_id"]["product_name"],
+              productDescription: item["product_id"]["product_description"],
+              productPrice: parseFloat(item["product_id"]["product_price"]),
             };
           });
-          this.state.productsBought = productArray;
+          let uniqueProductArray = [
+            ...new Map(productArray.map((item) => [item["itemId"], item])).values(),
+          ];
+          this.state.productsBought = uniqueProductArray;
         } catch {
-          alert(JSON.stringify(`${Constants.API_BASE_URL}/getBoughtProducts.php?user_id=${this.state.loggedInUser.userId}`));
+          //alert(JSON.stringify(`${Constants.API_BASE_URL}/getBoughtProducts.php?user_id=${this.state.loggedInUser.userId}`));
           this.state.productsBought = [];
         }
       }
@@ -237,19 +240,19 @@ export default new Vuex.Store({
             console.log("Error deleting from cart");
           });
     },
-    addProductToCart({ commit }, { productId, quantity }) {
-      let selected = true;
+    purchaseProduct(_, { productId, quantity }) {
+      if (!this.state.isLoggedIn) {
+        return;
+      }
       if (
         !Object.prototype.hasOwnProperty.call(this.state.cartIds, productId)
       ) {
         const data = {
+          user_id: this.state.loggedInUser.userId,
           product_id: productId,
-          product_quantity: quantity,
+          quantity: quantity,
+          order_status: "pending",
         };
-
-        if (this.state.isLoggedIn) {
-          data["user_id"] = this.state.loggedInUser.userId;
-        }
 
         const formData = new FormData();
         Object.keys(data).forEach((key) => {
@@ -257,11 +260,10 @@ export default new Vuex.Store({
         });
 
         axios
-          .post(`${Constants.API_BASE_URL}/addProductToCart.php`, formData)
+          .post(`${Constants.API_BASE_URL}/orders/`, data)
           .then((response) => {
-            if (response.data["cart_id"] !== undefined) {
-              this.state.cartIds[productId] = response.data["cart_id"];
-              commit("ADD_TO_CART", { productId, quantity, selected });
+            if (response.data["_id"] !== undefined) {
+              console.log(JSON.stringify(response.data))
             }
           })
           .catch(() => {
