@@ -176,18 +176,27 @@ export default new Vuex.Store({
       });
 
       axios
-        .post(`${Constants.API_BASE_URL}/user/login`, data)
+        .get(`${Constants.API_BASE_URL}/Users`)
         .then((response) => {
-          if (response.data["_id"] !== undefined) {
-            const user = {
-              ...response.data,
-              userId: response.data["_id"],
-              profileImage: response.data["profile_image"],
-            };
-            commit("LOGIN_SUCCESS", { user: user });
-            commit("HIDE_MODAL");
-            dispatch("getUserCart");
-          } else {
+
+          let success = false;
+          //alert(JSON.stringify(response.data["$values"]))
+          for(let user of response.data["$values"]){
+            if (user.email == email && user.password == password){
+              const userObj = {
+                ...user,
+                userId: user["id"]
+              };
+              //alert("dispatched" + JSON.stringify(userObj))
+              commit("LOGIN_SUCCESS", { user: userObj });
+              commit("HIDE_MODAL");
+              dispatch("getUserCart");
+              success = true;
+              break;
+            }
+          }
+
+          if(success == false) {
             commit("LOGIN_FAIL");
           }
         })
