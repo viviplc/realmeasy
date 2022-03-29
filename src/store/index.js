@@ -185,10 +185,11 @@ export default new Vuex.Store({
             if (user.email == email && user.password == password){
               const userObj = {
                 ...user,
-                userId: user["id"]
+                userId: String(user["id"])
               };
-              //alert("dispatched" + JSON.stringify(userObj))
+              alert("dispatched" + JSON.stringify(userObj))
               commit("LOGIN_SUCCESS", { user: userObj });
+              alert("USer -> " + this.state.loggedInUser.userId)
               commit("HIDE_MODAL");
               dispatch("getUserCart");
               success = true;
@@ -259,10 +260,11 @@ export default new Vuex.Store({
         !Object.prototype.hasOwnProperty.call(this.state.cartIds, productId)
       ) {
         const data = {
-          user_id: this.state.loggedInUser.userId,
-          product_id: productId,
+          id: 0,
+          userId: this.state.loggedInUser.userId,
+          productId: productId,
           quantity: quantity,
-          order_status: "pending",
+          status: "pending",
         };
 
         const formData = new FormData();
@@ -271,7 +273,7 @@ export default new Vuex.Store({
         });
 
         axios
-          .post(`${Constants.API_BASE_URL}/orders/`, data)
+          .post(`${Constants.API_BASE_URL}/Orders/`, data)
           .then((response) => {
             if (response.data["_id"] !== undefined) {
               console.log(JSON.stringify(response.data))
