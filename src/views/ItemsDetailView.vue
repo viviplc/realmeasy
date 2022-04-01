@@ -1,7 +1,7 @@
 <template>
   <div class="itemdetail-container">
     <div class="itemdetail-image">
-      <img :src="getImgUrl(product.image)" v-bind:alt="image" />
+      <img :src="getImgUrl(product.image)" v-bind:alt="product.image" />
     </div>
     <div class="itemdetail-infocontainer">
       <div class="item-info">

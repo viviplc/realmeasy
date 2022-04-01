@@ -108,6 +108,7 @@ export default new Vuex.Store({
             productName: item["name"],
             productDescription: item["description"],
             productPrice: parseFloat(item["price"]),
+            reviews: []
           };
         });
 
@@ -146,8 +147,9 @@ export default new Vuex.Store({
       if(this.state.isLoggedIn){
         try {
           const response = await axios.get(
-            `${Constants.API_BASE_URL}/products/${productId}`
+            `${Constants.API_BASE_URL}/Orders`
           );
+          
           const reviewArray = response.data.reviews.map((item) => {
             return {
               userId: item["user_id"]["_id"],
