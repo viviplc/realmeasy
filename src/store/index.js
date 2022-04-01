@@ -130,7 +130,6 @@ export default new Vuex.Store({
             return order.userId == loggedInUserId && !order.product.hasOwnProperty('$ref')
           })
 
-          alert(JSON.stringify(currentUserOrders))
           
           var currentUserProductsOrdered = currentUserOrders.map((order) => {
             const item = order.product;
@@ -143,7 +142,6 @@ export default new Vuex.Store({
             };
           });
           
-          alert(JSON.stringify(currentUserProductsOrdered))
 
           let uniqueProductArray = [
             ...new Map(currentUserProductsOrdered.map((item) => [item["itemId"], item])).values(),
@@ -160,18 +158,30 @@ export default new Vuex.Store({
       if(this.state.isLoggedIn){
         try {
           const response = await axios.get(
-            `${Constants.API_BASE_URL}/Orders`
+            `${Constants.API_BASE_URL}/Reviews`
           );
-          
-          const reviewArray = response.data.reviews.map((item) => {
+
+          var currentProductReviews = response.data["$values"].filter(function (review) {
+            return review.productId == productId
+          })
+
+          const users = {}
+
+          for(let review of currentProductReviews){
+            if(!users.hasOwnProperty(review.user['$ref'])){
+              users[review.userId] = review.user
+            }
+          }
+
+          const reviewArray = currentProductReviews.map((item) => {
             return {
-              userId: item["user_id"]["_id"],
-              reviewId: item["_id"],
+              userId: item["userId"],
+              reviewId: item["id"],
               image: item["image"],
-              profileUrl: item["user_id"]["profile_image"],
-              name: item["user_id"]["name"],
-              rating: parseFloat(item["review_rating"]),
-              text: item["review_text"],
+              profileUrl: users[item["userId"]]["profileImage"],
+              name: users[item["userId"]]["name"],
+              rating: parseFloat(item["rating"]),
+              text: item["text"],
             };
           });
           this.state.productReviews[productId] = reviewArray;
@@ -202,9 +212,9 @@ export default new Vuex.Store({
                 ...user,
                 userId: String(user["id"])
               };
-              alert("dispatched" + JSON.stringify(userObj))
+              //alert("dispatched" + JSON.stringify(userObj))
               commit("LOGIN_SUCCESS", { user: userObj });
-              alert("USer -> " + this.state.loggedInUser.userId)
+              //alert("USer -> " + this.state.loggedInUser.userId)
               commit("HIDE_MODAL");
               dispatch("getUserCart");
               success = true;
@@ -371,7 +381,7 @@ export default new Vuex.Store({
           .post(`${Constants.API_BASE_URL}/createOrder.php`, formData)
           .then((response) => {
             if (response.data["order_id"] !== undefined) {
-              alert("Created order " + response.data["order_id"] + "!");
+              //alert("Created order " + response.data["order_id"] + "!");
               this.state.cart = [];
               this.state.cartIds = {};
             }
