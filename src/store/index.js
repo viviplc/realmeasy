@@ -303,12 +303,14 @@ export default new Vuex.Store({
       if (
         this.state.isLoggedIn
       ) {
+
         const data = {
-          product_id: productId,
-          review_text: reviewText,
-          review_rating : reviewRating,
-          user_id : this.state.loggedInUser.userId
-        };
+          "id": 0,
+          "text": reviewText,
+          "rating": reviewRating,
+          "userId": this.state.loggedInUser.userId,
+          "productId": productId,
+        }
 
         const formData = new FormData();
         Object.keys(data).forEach((key) => {
@@ -316,12 +318,10 @@ export default new Vuex.Store({
         });
 
         axios
-          .post(`${Constants.API_BASE_URL}/products/${productId}/review`, data)
+          .post(`${Constants.API_BASE_URL}/Reviews`, data)
           .then((response) => {
-            if (response.data["review_id"] !== undefined) {
-              alert("Added review");
               dispatch("getProductReviews", {productId});
-            }
+              alert(JSON.stringify(response))
           })
           .catch((err) => {
             console.log("Error adding to cart: " + err);
