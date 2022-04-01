@@ -122,22 +122,35 @@ export default new Vuex.Store({
       if(this.state.isLoggedIn){
         try {
           const response = await axios.get(
-            `${Constants.API_BASE_URL}/orders/${this.state.loggedInUser.userId}`
+            `${Constants.API_BASE_URL}/Orders`
           );
-          const productArray = response.data.map((item) => {
+
+          const loggedInUserId = this.state.loggedInUser.userId;
+          var currentUserOrders = response.data["$values"].filter(function (order) {
+            return order.userId == loggedInUserId && !order.product.hasOwnProperty('$ref')
+          })
+
+          alert(JSON.stringify(currentUserOrders))
+          
+          var currentUserProductsOrdered = currentUserOrders.map((order) => {
+            const item = order.product;
             return {
-              itemId: item["product_id"]["_id"],
-              image: item["product_id"]["image"],
-              productName: item["product_id"]["product_name"],
-              productDescription: item["product_id"]["product_description"],
-              productPrice: parseFloat(item["product_id"]["product_price"]),
+              itemId: item["id"],
+              image: item["image"],
+              productName: item["name"],
+              productDescription: item["description"],
+              productPrice: parseFloat(item["price"]),
             };
           });
+          
+          alert(JSON.stringify(currentUserProductsOrdered))
+
           let uniqueProductArray = [
-            ...new Map(productArray.map((item) => [item["itemId"], item])).values(),
+            ...new Map(currentUserProductsOrdered.map((item) => [item["itemId"], item])).values(),
           ];
           this.state.productsBought = uniqueProductArray;
-        } catch {
+        } catch(e) {
+          alert(e)
           //alert(JSON.stringify(`${Constants.API_BASE_URL}/getBoughtProducts.php?user_id=${this.state.loggedInUser.userId}`));
           this.state.productsBought = [];
         }
