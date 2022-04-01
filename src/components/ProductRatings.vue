@@ -70,13 +70,23 @@ export default {
   computed: {
     reviews() {
       const productReviews = this.$store.state.productReviews;
-      return productReviews[this.productId];
+      if(productReviews.hasOwnProperty(this.productId)){
+        //alert("in computed ->" + JSON.stringify(productReviews[this.productId]))
+        return productReviews[this.productId];
+      } else {
+        return []
+      }
     },
     averageProductRating: function () {
       let totalRating = 0;
       let numReviews = this.reviews.length;
       this.reviews.forEach(({ rating }) => (totalRating += rating));
-      return totalRating / numReviews;
+      if(numReviews > 0){
+        return totalRating / numReviews;
+      } else {
+        return 0.0
+      }
+      
     },
   },
   mounted() {

@@ -56,9 +56,6 @@ export default {
     Item,
     ProductRatings,
   },
-  mounted() {
-    this.$store.dispatch("getProductReviews", {productId : this.$route.params.id});
-  },
   data() {
         return {
         quantity: 1,
